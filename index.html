@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曹营风云 - MVP</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="app">
+        <h2>曹营风云 MVP</h2>
+        
+        
+        <!-- 状态栏 -->
+        <div id="status-bar"></div>
+        
+        <!-- 对话区域 -->
+        <div id="dialogue-area"></div>
+        
+        <!-- 输入区域 -->
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="输入对话...">
+            <button id="send-btn">发送</button>
+        </div>
+        
+        <!-- 背包系统 -->
+        <div id="inventory">
+            <h3>背包</h3>
+            <div id="item-list"></div>
+            <div id="selected-item">选中道具: 无</div>
+        </div>
+    </div>
+
+    <!-- 加载脚本 -->
+    <script src="js/debug/DebugLogger.js"></script>
+    <script src="js/config/gameConfig.js"></script>
+    <script src="js/config/prompts.js"></script>
+    <script src="js/game/GameState.js"></script>
+    <script src="js/game/DialogueSystem.js"></script>
+    <script src="js/game/InventorySystem.js"></script>
+    <script src="js/ai/ResponseParser.js"></script>
+    <script src="js/ai/PromptBuilder.js"></script>
+    <script src="js/ai/AIService.js"></script>
+    <script src="js/ui/StatusUI.js"></script>
+    <script src="js/ui/DialogueUI.js"></script>
+    <script src="js/ui/UIManager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
