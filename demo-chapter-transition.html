@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>章节切换功能演示</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+        .chapter-demo {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chapter-title {
+            font-size: 1.5em;
+            color: #87ceeb;
+            margin-bottom: 15px;
+        }
+        .chapter-content {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .demo-button {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            background: linear-gradient(45deg, #357abd, #2968a3);
+            transform: translateY(-2px);
+        }
+        .current-header {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature-list li:before {
+            content: "✓";
+            color: #4ade80;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>草船借箭 - 章节切换功能演示</h1>
+        
+        <div class="current-header">
+            <strong>当前页面标题：</strong>
+            <span id="current-title">草船借箭 - 第一章：三日之约</span>
+        </div>
+        
+        <div class="chapter-demo">
+            <div class="chapter-title">功能特性</div>
+            <ul class="feature-list">
+                <li>自动更新页面标题和Header文字</li>
+                <li>显示对应章节的开幕文字</li>
+                <li>自动构建Prompt并调用AI获取首次响应</li>
+                <li>构建Prompt的方法与第一章保持一致</li>
+                <li>支持第二章和第三章的完整切换</li>
+            </ul>
+        </div>
+        
+        <div class="chapter-demo">
+            <div class="chapter-title">第二章：暗度陈仓</div>
+            <div class="chapter-content">
+                次日拂晓，晨光熹微。你在鲁肃引领下，来到江边僻静之处，开始筹谋大计。然公瑾虽表面不动声色，暗中却遣人四处窥探，欲知你如何造箭。
+            </div>
+            <button class="demo-button" onclick="switchToChapter(2)">切换到第二章</button>
+        </div>
+        
+        <div class="chapter-demo">
+            <div class="chapter-title">第三章：雾夜借箭</div>
+            <div class="chapter-content">
+                第三日子时，大雾弥天，长江之上白茫茫一片，对面不见人。正如你所料，天公作美，助你成事。
+            </div>
+            <button class="demo-button" onclick="switchToChapter(3)">切换到第三章</button>
+        </div>
+        
+        <div class="chapter-demo">
+            <div class="chapter-title">返回第一章</div>
+            <div class="chapter-content">
+                返回游戏开始的第一章，重新体验三日之约的挑战。
+            </div>
+            <button class="demo-button" onclick="switchToChapter(1)">返回第一章</button>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { StateManager } from './js/core/stateManager.js';
+        import { UIManager } from './js/ui/uiManager.js';
+        import { GameEngine } from './js/core/gameEngine.js';
+        
+        // 初始化游戏组件
+        const stateManager = new StateManager();
+        const gameEngine = new GameEngine(stateManager);
+        const uiManager = new UIManager(stateManager, gameEngine);
+        
+        // 模拟游戏实例
+        window.gameInstance = {
+            stateManager,
+            uiManager,
+            gameEngine,
+            autoCallAI: async () => {
+                console.log('🤖 自动调用AI - 模拟AI响应');
+                // 模拟AI响应延迟
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                console.log('✓ AI响应完成');
+                return { success: true, data: { narrative: '章节开始，AI已响应...' } };
+            }
+        };
+        
+        // 章节切换函数
+        window.switchToChapter = function(chapterNumber) {
+            console.log(`\n=== 演示：切换到第${chapterNumber}章 ===`);
+            
+            // 更新游戏状态
+            stateManager.setState({ chapter: chapterNumber });
+            
+            // 更新页面标题和header
+            uiManager.updateChapterHeader(chapterNumber);
+            
+            // 更新演示页面的标题显示
+            const chapterData = stateManager.gameData?.chapters?.[`chapter${chapterNumber}`];
+            if (chapterData) {
+                const newTitle = `草船借箭 - 第${chapterNumber}章：${chapterData.title}`;
+                document.getElementById('current-title').textContent = newTitle;
+                
+                // 显示开幕文字
+                console.log('📖 章节开幕文字:');
+                console.log(chapterData.openingText);
+                
+                // 模拟自动调用AI
+                setTimeout(() => {
+                    window.gameInstance.autoCallAI().then(() => {
+                        console.log('🎉 章节切换完成！');
+                    });
+                }, 500);
+            }
+        };
+        
+        console.log('📋 章节切换演示页面已加载');
+        console.log('💡 点击按钮可以测试章节切换功能');
+        console.log('🔍 打开浏览器开发者工具查看详细日志');
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+=== AI响应内容 ===
+aiManager.js:45 ```json
+{
+  "narrative": "军帐内烛火摇曳，周瑜听闻诸葛亮竟如此爽快地应下这几乎不可能完成的任务，眼中闪过一丝讶异与更深沉的算计。他挥手示意侍从呈上军令状，羊皮卷轴在案几上缓缓展开，墨迹未干的字迹在火光下显得格外刺目。帐外北风呼啸，仿佛预示着这场赌局背后的凶险。",
+  "npc_dialogue": {
+    "speaker": "周瑜",
+    "content": "（冷笑提笔）好！先生果然痛快。这军令状上若添了墨宝，可就没有转圜余地了——三日之后若无十万箭，莫怪军法无情。"
+  },
+  "value_changes": {
+    "周瑜": {
+      "猜忌值": "+10"
+    }
+  },
+  "special_progress": {
+    "preparationProgress": "+20"
+  },
+  "event_suggestion": {
+    "should_trigger": true,
+    "event_id": "dialogue_event2",
+    "reason": "玩家已明确接受挑战并表态立军令状"
+  },
+  "item_grant": {
+    "should_grant": true,
+    "item_id": "militaryOrder",
+    "condition_met": "完成立下军令事件"
+  }
+}
+```
+aiManager.js:136 
+=== AI响应解析成功 ===
+aiManager.js:140 事件解析结果: {should_trigger: true, event_id: 'dialogue_event2', reason: '玩家已明确接受挑战并表态立军令状'}
+aiManager.js:147 道具解析结果: {should_grant: true, item_id: 'militaryOrder', condition_met: '完成立下军令事件'}
+aiManager.js:152 解析完成: 所有字段已成功提取
+aiManager.js:50 
+=== 解析后结果 ===
+aiManager.js:51 叙述内容: 军帐内烛火摇曳，周瑜听闻诸葛亮竟如此爽快地应下这几乎不可能完成的任务，眼中闪过一丝讶异与更深沉的算计。他挥手示意侍从呈上军令状，羊皮卷轴在案几上缓缓展开，墨迹未干的字迹在火光下显得格外刺目。帐外北风呼啸，仿佛预示着这场赌局背后的凶险。
+aiManager.js:52 NPC对话: {speaker: '周瑜', content: '（冷笑提笔）好！先生果然痛快。这军令状上若添了墨宝，可就没有转圜余地了——三日之后若无十万箭，莫怪军法无情。'}
+aiManager.js:53 数值变化: {周瑜: {…}}
+aiManager.js:54 事件建议: {should_trigger: true, event_id: 'dialogue_event2', reason: '玩家已明确接受挑战并表态立军令状'}
+aiManager.js:55 道具授予: {should_grant: true, item_id: 'militaryOrder', condition_met: '完成立下军令事件'}
+aiManager.js:56 特殊进度: {preparationProgress: '+20'}
+gameEngine.js:486 
+=== GameEngine 处理数值变化 ===
+gameEngine.js:487 AI响应的value_changes: {周瑜: {…}}
+stateManager.js:174 
+=== StateManager 应用数值变化 ===
+stateManager.js:175 输入的changes: {周瑜: {…}}
+stateManager.js:176 变化前状态: {
+  "chapter": 1,
+  "chapterName": "三日之约",
+  "timeProgress": 1,
+  "zhouYu": {
+    "suspicion": 50
+  },
+  "luSu": {
+    "trust": 50
+  },
+  "items": {
+    "kongMingFan": true,
+    "xuanDeBrush": true
+  },
+  "hasXuanDeBrush": true,
+  "hasDongwuTiger": false,
+  "events": {
+    "acceptChallenge": false,
+    "signMilitaryOrder": false,
+    "convinceLuSu": false,
+    "borrowArrows": false
+  },
+  "triggeredEvents": [],
+  "activeNPCs": [
+    "zhouYu",
+    "luSu"
+  ]
+}
+stateManager.js:181 处理周瑜数值变化: {猜忌值: '+10'}
+stateManager.js:192 周瑜.suspicion: 50 + null = 50
+gameEngine.js:495 周瑜.猜忌值: +10
+gameEngine.js:517 
+=== 特殊进度值变化 ===
+gameEngine.js:518 AI响应的special_progress: {preparationProgress: '+20'}
+stateManager.js:174 
+=== StateManager 应用数值变化 ===
+stateManager.js:175 输入的changes: {preparationProgress: '+20'}
+stateManager.js:176 变化前状态: {
+  "chapter": 1,
+  "chapterName": "三日之约",
+  "timeProgress": 1,
+  "zhouYu": {
+    "suspicion": 50
+  },
+  "luSu": {
+    "trust": 50
+  },
+  "items": {
+    "kongMingFan": true,
+    "xuanDeBrush": true
+  },
+  "hasXuanDeBrush": true,
+  "hasDongwuTiger": false,
+  "events": {
+    "acceptChallenge": false,
+    "signMilitaryOrder": false,
+    "convinceLuSu": false,
+    "borrowArrows": false
+  },
+  "triggeredEvents": [],
+  "activeNPCs": [
+    "zhouYu",
+    "luSu"
+  ]
+}
+stateManager.js:255 准备进度变化: +null -> 0
+gameEngine.js:524 preparationProgress: +20
+gameEngine.js:530 
+=== AI响应事件处理 ===
+gameEngine.js:531 AI响应中的event_suggestion: {should_trigger: true, event_id: 'dialogue_event2', reason: '玩家已明确接受挑战并表态立军令状'}
+gameEngine.js:540 检查事件: dialogue_event2, 触发理由: 玩家已明确接受挑战并表态立军令状
+gameEngine.js:541 事件处理器存在: true
+gameEngine.js:545 执行事件处理器: dialogue_event2
+stateManager.js:163 事件已触发: dialogue_event2
+stateManager.js:164 当前已触发事件列表: ['dialogue_event2']
+gameEngine.js:547 事件处理器结果: {trigger: true, id: 'dialogue_event2', title: '立下军令', type: 'dialogue_event', content: '公瑾闻言，佯作惊诧，实则心中窃喜。即令左右取军令状来，白绢黑字，森然可畏。其上写明：限三日内交箭十万，如违期限，甘当军法。你提笔濡墨，从容书名，印上朱泥。公瑾收起军令，与你约定三日为期。'}
+gameEngine.js:550 AI事件触发: dialogue_event2 - 立下军令
+gameEngine.js:570 
+=== 道具授予 ===
+gameEngine.js:571 AI响应的item_grant: {should_grant: true, item_id: 'militaryOrder', condition_met: '完成立下军令事件'}
+gameEngine.js:577 获得道具: militaryOrder, 条件: 完成立下军令事件
+stateManager.js:174 
+=== StateManager 应用数值变化 ===
+stateManager.js:175 输入的changes: {items: {…}}
+stateManager.js:176 变化前状态: {
+  "chapter": 1,
+  "chapterName": "三日之约",
+  "timeProgress": 1,
+  "zhouYu": {
+    "suspicion": 50
+  },
+  "luSu": {
+    "trust": 50
+  },
+  "items": {
+    "kongMingFan": true,
+    "xuanDeBrush": true
+  },
+  "hasXuanDeBrush": true,
+  "hasDongwuTiger": false,
+  "events": {
+    "acceptChallenge": false,
+    "signMilitaryOrder": false,
+    "convinceLuSu": false,
+    "borrowArrows": false
+  },
+  "triggeredEvents": [
+    "dialogue_event2"
+  ],
+  "activeNPCs": [
+    "zhouYu",
+    "luSu"
+  ],
+  "preparationProgress": 0
+}
+stateManager.js:234 道具变化: militaryOrder = true
+main.js:202 
+=== 游戏响应处理 ===
+main.js:203 响应数据: {narrative: '军帐内烛火摇曳，周瑜听闻诸葛亮竟如此爽快地应下这几乎不可能完成的任务，眼中闪过一丝讶异与更深沉的算计…在案几上缓缓展开，墨迹未干的字迹在火光下显得格外刺目。帐外北风呼啸，仿佛预示着这场赌局背后的凶险。', npc_dialogue: {…}, value_changes: {…}, event_suggestion: {…}, item_grant: {…}, …}
+main.js:204 autoEvents字段: [{…}]
+main.js:205 autoEvents长度: 1
+main.js:221 
+=== Main 检测到数值变化，更新UI ===
+uiManager.js:102 
+=== UIManager 更新状态栏 ===
+uiManager.js:104 当前状态: {chapter: 1, chapterName: '三日之约', timeProgress: 1, zhouYu: {…}, luSu: {…}, …}
+uiManager.js:113 更新猜忌值: 50
+uiManager.js:120 更新信任值: 50
+uiManager.js:173 更新时间进度: 第1日
+uiManager.js:180 状态栏更新完成
+main.js:308 
+=== Main 显示数值变化动画 ===
+main.js:309 旧状态: {chapter: 1, chapterName: '三日之约', timeProgress: 1, zhouYu: {…}, luSu: {…}, …}
+main.js:310 新状态: {chapter: 1, chapterName: '三日之约', timeProgress: 1, zhouYu: {…}, luSu: {…}, …}
+main.js:319 猜忌值变化: 50 -> 50 (0)
+main.js:327 信任值变化: 50 -> 50 (0)
+main.js:380 时间进度变化: 1 -> 1 (0)
+main.js:386 调用updateGameInfo
+main.js:231 数值变化详情: {周瑜: {…}}
+main.js:236 处理道具获得通知: [{…}]
+main.js:239 显示道具获得弹窗: 军令状
+main.js:250 🎯 处理autoEvents: [{…}]
+main.js:252 🎯 处理事件 1: {name: 'dialogue_event2', reason: '玩家已明确接受挑战并表态立军令状', trigger: true, id: 'dialogue_event2', title: '立下军令', …} 类型: dialo

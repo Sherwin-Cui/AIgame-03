@@ -1,0 +1,1055 @@
+{
+  "timestamp": "2025-08-05T10:09:06.620Z",
+  "summary": {
+    "errors": 132,
+    "warnings": 17,
+    "filesScanned": 17
+  },
+  "errors": [
+    {
+      "type": "error",
+      "message": "已废弃变量: luSuTrust",
+      "file": "js/core/stateManager.js",
+      "line": 254,
+      "code": "luSuTrust: this.state.luSu.trust,"
+    },
+    {
+      "type": "error",
+      "message": "已废弃变量: zhouYuAlert",
+      "file": "scripts/consistency-check.js",
+      "line": 80,
+      "code": "'zhouYuAlert',"
+    },
+    {
+      "type": "error",
+      "message": "已废弃变量: luSuTrust",
+      "file": "scripts/consistency-check.js",
+      "line": 81,
+      "code": "'luSuTrust'"
+    },
+    {
+      "type": "error",
+      "message": "已废弃变量: zhouYuAlert",
+      "file": "scripts/consistency-check.js",
+      "line": 187,
+      "code": "'zhouYuAlert',"
+    },
+    {
+      "type": "error",
+      "message": "已废弃变量: luSuTrust",
+      "file": "scripts/consistency-check.js",
+      "line": 188,
+      "code": "'luSuTrust'"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/core/gameEngine.js",
+      "line": 555,
+      "code": "response.autoEvents = aiEvents;"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: luSuTrust",
+      "file": "js/core/stateManager.js",
+      "line": 254,
+      "code": "luSuTrust: this.state.luSu.trust,"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/main.js",
+      "line": 208,
+      "code": "console.log('autoEvents字段:', response.autoEvents);"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/main.js",
+      "line": 209,
+      "code": "console.log('autoEvents长度:', response.autoEvents ? response.autoEvents.length : 0);"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/main.js",
+      "line": 249,
+      "code": "if (response.autoEvents && response.autoEvents.length > 0) {"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/main.js",
+      "line": 250,
+      "code": "console.log('处理autoEvents:', response.autoEvents);"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/main.js",
+      "line": 251,
+      "code": "response.autoEvents.forEach((event, index) => {"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 68,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 94,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 111,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 132,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 162,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 180,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 210,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 226,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 253,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 268,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 284,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 312,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 328,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 344,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 358,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 375,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 403,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 432,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 465,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 479,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 514,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: zhouYuAlert",
+      "file": "scripts/consistency-check.js",
+      "line": 80,
+      "code": "'zhouYuAlert',"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: luSuTrust",
+      "file": "scripts/consistency-check.js",
+      "line": 81,
+      "code": "'luSuTrust'"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "scripts/consistency-check.js",
+      "line": 186,
+      "code": "'autoEvents',"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: zhouYuAlert",
+      "file": "scripts/consistency-check.js",
+      "line": 187,
+      "code": "'zhouYuAlert',"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: luSuTrust",
+      "file": "scripts/consistency-check.js",
+      "line": 188,
+      "code": "'luSuTrust'"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "scripts/consistency-check.js",
+      "line": 219,
+      "code": "const deprecatedAIFields = ['autoEvents', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "使用了已废弃的模式: autoEvents",
+      "file": "tests/dataFlowTests.js",
+      "line": 306,
+      "code": "const deprecatedFields = ['autoEvents', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 146,
+      "code": "if (parsed.items && Object.keys(parsed.items).length > 0) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 147,
+      "code": "console.log('道具解析结果:', parsed.items);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 159,
+      "code": "items: parsed.items || {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 184,
+      "code": "items: {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 203,
+      "code": "items: {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 220,
+      "code": "items: {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 232,
+      "code": "items: {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/aiManager.js",
+      "line": 246,
+      "code": "items: {}"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 40,
+      "code": "items: module.items"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 200,
+      "code": "items: itemChanges"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 229,
+      "code": "if (!gameData?.items) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 235,
+      "code": "Object.entries(gameData.items).forEach(([itemId, itemData]) => {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 237,
+      "code": "if (gameState.items && gameState.items[itemId]) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 267,
+      "code": "return gameState.chapter === 1 && !gameState.items?.[itemId];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 432,
+      "code": "currentValue = gameState.items?.[itemId] ? true : false;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/core/gameEngine.js",
+      "line": 555,
+      "code": "response.autoEvents = aiEvents;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 574,
+      "code": "items: { [itemId]: true }"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 578,
+      "code": "const itemData = this.stateManager.gameData?.items?.[itemId];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameEngine.js",
+      "line": 609,
+      "code": "items: itemChanges"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameStateManager.js",
+      "line": 4,
+      "code": "import { globalState, characters, chapters, events, items } from '../data/gameData.js';"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameStateManager.js",
+      "line": 194,
+      "code": "console.log(`获得道具: ${items[itemId]?.name || itemId}`);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameStateManager.js",
+      "line": 217,
+      "code": "console.log(`使用道具: ${items[itemId]?.name || itemId}`);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/gameStateManager.js",
+      "line": 235,
+      "code": "const item = items[itemId];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 2,
+      "code": "import { globalState, characters, chapters, events, items } from '../data/gameData.js';"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 31,
+      "code": "items: {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 129,
+      "code": "if (changes.items) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 130,
+      "code": "if (!this.state.items) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 131,
+      "code": "this.state.items = {};"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 133,
+      "code": "Object.entries(changes.items).forEach(([itemId, status]) => {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/core/stateManager.js",
+      "line": 135,
+      "code": "this.state.items[itemId] = status;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/data/gameData.js",
+      "line": 588,
+      "code": "const items = {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/data/gameData.js",
+      "line": 866,
+      "code": "items,"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/data/gameData.js",
+      "line": 880,
+      "code": "items,"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/main.js",
+      "line": 208,
+      "code": "console.log('autoEvents字段:', response.autoEvents);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/main.js",
+      "line": 209,
+      "code": "console.log('autoEvents长度:', response.autoEvents ? response.autoEvents.length : 0);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/main.js",
+      "line": 249,
+      "code": "if (response.autoEvents && response.autoEvents.length > 0) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/main.js",
+      "line": 250,
+      "code": "console.log('处理autoEvents:', response.autoEvents);"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/main.js",
+      "line": 251,
+      "code": "response.autoEvents.forEach((event, index) => {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/main.js",
+      "line": 528,
+      "code": "console.log('• quickTest(\"multiple_items\") - 测试多道具获得');"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 4,
+      "code": "import { globalState, characters, chapters, events, items, reactionRules, dialogueRules } from './data/gameData.js';"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 131,
+      "code": "items: ["
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 144,
+      "code": "items: ["
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 161,
+      "code": "items: ["
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 179,
+      "code": "if (chapterData.items.length > 0) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 181,
+      "code": "chapterData.items.forEach(item => {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/promptBuilder.js",
+      "line": 321,
+      "code": "const item = items[playerAction.item];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 68,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 74,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 94,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 111,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 132,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 139,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 162,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 180,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 187,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 210,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 226,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 233,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 253,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 268,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 284,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 291,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 312,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 328,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 344,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 358,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 375,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 403,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 432,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 465,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 479,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "js/testTemplates.js",
+      "line": 514,
+      "code": "\"autoEvents\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 525,
+      "code": "initial_items: `{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 527,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 554,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 570,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 586,
+      "code": "multiple_items: `{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 588,
+      "code": "\"items\": [{"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 745,
+      "code": "'道具相关': Object.keys(templates).filter(k => k.includes('item') || k === 'multiple_items'),"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/testTemplates.js",
+      "line": 758,
+      "code": "k !== 'multiple_items'"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/ui/uiManager.js",
+      "line": 568,
+      "code": "align-items: center;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/ui/uiManager.js",
+      "line": 758,
+      "code": "align-items: center;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/ui/uiManager.js",
+      "line": 917,
+      "code": "align-items: center;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "js/utils/testUtils.js",
+      "line": 40,
+      "code": "const itemData = gameData.items[itemId];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "scripts/consistency-check.js",
+      "line": 186,
+      "code": "'autoEvents',"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "scripts/consistency-check.js",
+      "line": 219,
+      "code": "const deprecatedAIFields = ['autoEvents', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "scripts/consistency-check.js",
+      "line": 219,
+      "code": "const deprecatedAIFields = ['autoEvents', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "scripts/consistency-check.js",
+      "line": 261,
+      "code": "const requiredStructures = ['initialState', 'events', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "tests/dataFlowTests.js",
+      "line": 167,
+      "code": "const items = gameData.items;"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "tests/dataFlowTests.js",
+      "line": 169,
+      "code": "for (const [itemId, item] of Object.entries(items)) {"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: autoEvents",
+      "file": "tests/dataFlowTests.js",
+      "line": 306,
+      "code": "const deprecatedFields = ['autoEvents', 'items'];"
+    },
+    {
+      "type": "error",
+      "message": "AI响应使用了已废弃字段: items",
+      "file": "tests/dataFlowTests.js",
+      "line": 306,
+      "code": "const deprecatedFields = ['autoEvents', 'items'];"
+    }
+  ],
+  "warnings": [
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 194,
+      "code": "this.stateManager.applyValueChanges(changes);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 199,
+      "code": "this.stateManager.applyValueChanges({"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 486,
+      "code": "this.stateManager.applyValueChanges(response.value_changes);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 514,
+      "code": "this.stateManager.applyValueChanges(response.special_progress);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 573,
+      "code": "this.stateManager.applyValueChanges({"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 608,
+      "code": "this.stateManager.applyValueChanges({"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/gameEngine.js",
+      "line": 738,
+      "code": "this.stateManager.applyValueChanges({"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.checkCondition 而不是 checkCondition",
+      "file": "js/core/gameStateManager.js",
+      "line": 300,
+      "code": "checkCondition(condition) {"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/stateManager.js",
+      "line": 87,
+      "code": "applyValueChanges(changes) {"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.parseValueChange 而不是 parseValueChange",
+      "file": "js/core/stateManager.js",
+      "line": 97,
+      "code": "const delta = this.parseValueChange(value);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.parseValueChange 而不是 parseValueChange",
+      "file": "js/core/stateManager.js",
+      "line": 109,
+      "code": "const delta = this.parseValueChange(value);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.parseValueChange 而不是 parseValueChange",
+      "file": "js/core/stateManager.js",
+      "line": 119,
+      "code": "const delta = this.parseValueChange(value);"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.parseValueChange 而不是 parseValueChange",
+      "file": "js/core/stateManager.js",
+      "line": 159,
+      "code": "parseValueChange(value) {"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.applyValueChanges 而不是 applyValueChanges",
+      "file": "js/core/stateManager.js",
+      "line": 195,
+      "code": "this.applyValueChanges({"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.parseValueChange 而不是 parseValueChange",
+      "file": "js/utils/gameUtils.js",
+      "line": 12,
+      "code": "static parseValueChange(changeStr) {"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.checkCondition 而不是 checkCondition",
+      "file": "js/utils/gameUtils.js",
+      "line": 54,
+      "code": "static checkCondition(condition, state) {"
+    },
+    {
+      "type": "warning",
+      "message": "建议使用模块化函数: GameUtils.checkCondition 而不是 checkCondition",
+      "file": "js/utils/testUtils.js",
+      "line": 50,
+      "code": "conditionMet = gameInstance.stateManager.checkCondition(itemGrant.condition);"
+    }
+  ]
+}

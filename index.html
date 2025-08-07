@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>草船借箭 - 第一章：三日之约</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>草船借箭 - 第一章：三日之约</h1>
+        </header>
+        
+        <div id="status-bar">
+            <!-- 第一章状态栏 -->
+            <div class="status-item chapter1-status">
+                <span class="label">周瑜猜忌：</span>
+                <span id="suspicion" class="value">50</span>
+            </div>
+            <div class="status-item chapter1-status">
+                <span class="label">鲁肃信任：</span>
+                <span id="trust" class="value">50</span>
+            </div>
+            <div class="status-item">
+                <span class="label">时间进度：</span>
+                <span id="time-progress" class="value">第1日</span>
+            </div>
+            
+            <!-- 第二章状态栏 -->
+            <div class="status-item chapter2-status" style="display: none;">
+                <span class="label">准备进度：</span>
+                <span id="preparation-progress" class="value">0</span>
+            </div>
+            
+            <!-- 第三章状态栏 -->
+            <div class="status-item chapter3-status" style="display: none;">
+                <span class="label">危险等级：</span>
+                <span id="danger-level" class="value">0</span>
+            </div>
+            <div class="status-item chapter3-status" style="display: none;">
+                <span class="label">士兵士气：</span>
+                <span id="soldier-morale" class="value">50</span>
+            </div>
+            <div class="status-item chapter3-status" style="display: none;">
+                <span class="label">船只损失：</span>
+                <span id="ship-loss" class="value">0</span>
+            </div>
+            <div class="status-item chapter3-status" style="display: none;">
+                <span class="label">箭支数量：</span>
+                <span id="arrow-count" class="value">0</span>
+            </div>
+        </div>
+        
+        <div id="character-avatars">
+            <div class="character-avatar" data-character="zhugeLiang" onclick="showCharacterInfo('zhugeLiang')">
+                <div class="avatar-container">诸葛亮</div>
+                <span class="character-name">诸葛亮</span>
+            </div>
+            <div class="character-avatar" data-character="zhouYu" onclick="showCharacterInfo('zhouYu')">
+                <div class="avatar-container">周瑜</div>
+                <span class="character-name">周瑜</span>
+            </div>
+            <div class="character-avatar" data-character="luSu" onclick="showCharacterInfo('luSu')">
+                <div class="avatar-container">鲁肃</div>
+                <span class="character-name">鲁肃</span>
+            </div>
+            <div class="character-avatar" data-character="ganNing" onclick="showCharacterInfo('ganNing')">
+                <div class="avatar-container">甘宁</div>
+                <span class="character-name">甘宁</span>
+            </div>
+        </div>
+        
+        <div id="dialogue-area">
+            <!-- 对话内容将由JavaScript动态添加 -->
+        </div>
+        
+        <div id="input-area">
+            <input type="text" id="player-input" placeholder="请输入你的话语或行动..." maxlength="200">
+            <button id="send-btn" onclick="sendMessage()">发送</button>
+        </div>
+        
+        <div id="items-container">
+            <div id="items-display">
+                <h4>已获得道具：</h4>
+                <div id="items-list">
+                    <!-- 道具列表将由JavaScript动态添加 -->
+                </div>
+            </div>
+            
+            <div id="item-selection">
+                <h4>选择道具使用：</h4>
+                <div id="item-options">
+                    <span class="item-option selected" data-item="none">不使用道具</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-info">
+            <div class="info-section">
+                <h3>当前状态</h3>
+                <p id="current-situation">你正在周瑜的军帐中，气氛有些紧张...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="loading" class="hidden">
+        <div class="loading-spinner"></div>
+        <p>AI思考中...</p>
+    </div>
+    
+    <script src="js/testTemplates.js"></script>
+    <script src="js/utils/testUtils.js"></script>
+    <script src="js/main.js" type="module"></script>
+    <script src="test-value-animation.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>草船借箭 - 数据流测试运行器</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .test-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        
+        .test-results {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-card {
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .summary-total { background-color: #17a2b8; }
+        .summary-passed { background-color: #28a745; }
+        .summary-failed { background-color: #dc3545; }
+        .summary-rate { background-color: #6f42c1; }
+        
+        .test-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 4px solid;
+        }
+        
+        .test-passed {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .test-failed {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .test-icon {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        .test-content {
+            flex: 1;
+        }
+        
+        .test-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .test-message {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin-top: 20px;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-details {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .error-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 草船借箭游戏 - 数据流测试运行器</h1>
+        <p>自动化测试工具，用于验证代码一致性和数据流完整性</p>
+    </div>
+    
+    <div class="test-controls">
+        <button class="btn btn-primary" onclick="runTests()">🧪 运行所有测试</button>
+        <button class="btn btn-secondary" onclick="clearResults()">🗑️ 清空结果</button>
+        <button class="btn btn-secondary" onclick="exportResults()">📄 导出报告</button>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>正在运行测试...</p>
+    </div>
+    
+    <div class="test-results" id="results" style="display: none;">
+        <h2>📊 测试结果</h2>
+        <div class="summary" id="summary"></div>
+        <div id="test-list"></div>
+    </div>
+    
+    <div class="console-output" id="console" style="display: none;">
+        <h3>🖥️ 控制台输出</h3>
+        <div id="console-content"></div>
+    </div>
+    
+    <!-- 引入必要的模块 -->
+    <script type="module">
+        import gameData from './js/data/gameData.js';
+        import { GameUtils } from './js/utils/gameUtils.js';
+        import { DataFlowTests } from './tests/dataFlowTests.js';
+        
+        // 将模块暴露到全局作用域
+        window.gameData = gameData;
+        window.GameUtils = GameUtils;
+        window.DataFlowTests = DataFlowTests;
+        
+        // 重写console方法以捕获输出
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            warn: console.warn
+        };
+        
+        let consoleOutput = [];
+        
+        function captureConsole() {
+            consoleOutput = [];
+            
+            console.log = (...args) => {
+                originalConsole.log(...args);
+                consoleOutput.push({ type: 'log', message: args.join(' ') });
+                updateConsoleDisplay();
+            };
+            
+            console.error = (...args) => {
+                originalConsole.error(...args);
+                consoleOutput.push({ type: 'error', message: args.join(' ') });
+                updateConsoleDisplay();
+            };
+            
+            console.warn = (...args) => {
+                originalConsole.warn(...args);
+                consoleOutput.push({ type: 'warn', message: args.join(' ') });
+                updateConsoleDisplay();
+            };
+        }
+        
+        function restoreConsole() {
+            console.log = originalConsole.log;
+            console.error = originalConsole.error;
+            console.warn = originalConsole.warn;
+        }
+        
+        function updateConsoleDisplay() {
+            const consoleContent = document.getElementById('console-content');
+            consoleContent.innerHTML = consoleOutput.map(item => {
+                const color = item.type === 'error' ? '#ff6b6b' : 
+                             item.type === 'warn' ? '#feca57' : '#d4d4d4';
+                return `<div style="color: ${color}">${item.message}</div>`;
+            }).join('');
+            
+            // 自动滚动到底部
+            consoleContent.scrollTop = consoleContent.scrollHeight;
+        }
+        
+        // 全局函数
+        window.runTests = async function() {
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const consoleDiv = document.getElementById('console');
+            
+            // 显示加载状态
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            consoleDiv.style.display = 'block';
+            
+            // 开始捕获控制台输出
+            captureConsole();
+            
+            try {
+                // 运行测试
+                const tests = new DataFlowTests();
+                const report = tests.runAllTests();
+                
+                // 显示结果
+                displayResults(report, tests.testResults);
+                
+                // 隐藏加载状态
+                loading.style.display = 'none';
+                results.style.display = 'block';
+                
+            } catch (error) {
+                console.error('测试运行失败:', error);
+                loading.style.display = 'none';
+                
+                // 显示错误信息
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-details';
+                errorDiv.innerHTML = `
+                    <div class="error-title">❌ 测试运行失败</div>
+                    <div>${error.message}</div>
+                `;
+                document.body.appendChild(errorDiv);
+            } finally {
+                // 恢复控制台
+                restoreConsole();
+            }
+        };
+        
+        function displayResults(report, testResults) {
+            // 显示摘要
+            const summary = document.getElementById('summary');
+            summary.innerHTML = `
+                <div class="summary-card summary-total">
+                    <div style="font-size: 24px;">${report.total}</div>
+                    <div>总测试数</div>
+                </div>
+                <div class="summary-card summary-passed">
+                    <div style="font-size: 24px;">${report.passed}</div>
+                    <div>通过</div>
+                </div>
+                <div class="summary-card summary-failed">
+                    <div style="font-size: 24px;">${report.failed}</div>
+                    <div>失败</div>
+                </div>
+                <div class="summary-card summary-rate">
+                    <div style="font-size: 24px;">${report.successRate.toFixed(1)}%</div>
+                    <div>成功率</div>
+                </div>
+            `;
+            
+            // 显示详细结果
+            const testList = document.getElementById('test-list');
+            testList.innerHTML = testResults.map(test => {
+                const className = test.passed ? 'test-passed' : 'test-failed';
+                const icon = test.passed ? '✅' : '❌';
+                
+                return `
+                    <div class="test-item ${className}">
+                        <div class="test-icon">${icon}</div>
+                        <div class="test-content">
+                            <div class="test-name">${test.name}</div>
+                            <div class="test-message">${test.message}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        window.clearResults = function() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('console').style.display = 'none';
+            consoleOutput = [];
+        };
+        
+        window.exportResults = function() {
+            if (consoleOutput.length === 0) {
+                alert('请先运行测试');
+                return;
+            }
+            
+            const report = consoleOutput.map(item => item.message).join('\n');
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `test-report-${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            URL.revokeObjectURL(url);
+        };
+        
+        // 页面加载完成后的提示
+        console.log('🎯 数据流测试运行器已就绪');
+        console.log('点击"运行所有测试"按钮开始测试');
+    </script>
+</body>
+</html>
