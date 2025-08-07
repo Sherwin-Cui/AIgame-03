@@ -572,29 +572,28 @@ export class GameEngine {
         if (triggeredItems.length > 0) {
             // 道具触发检查
             
-            // 使用 addItem 方法防止重复获得
-            const actuallyAddedItems = [];
+            // 应用道具获得
+            const itemChanges = {};
             triggeredItems.forEach(item => {
-                const added = this.stateManager.addItem(item.id);
-                if (added) {
-                    actuallyAddedItems.push(item);
-                }
+                itemChanges[item.id] = true;
             });
             
-            // 只为实际添加的道具创建通知
-            if (actuallyAddedItems.length > 0) {
-                if (!response.itemNotifications) {
-                    response.itemNotifications = [];
-                }
-                actuallyAddedItems.forEach(item => {
-                    response.itemNotifications.push({
-                        type: 'item_gained',
-                        itemId: item.id,
-                        itemName: item.name,
-                        description: `获得道具：${item.name}`
-                    });
-                });
+            this.stateManager.applyValueChanges({
+                items: itemChanges
+            });
+            
+            // 添加到响应中
+            if (!response.itemNotifications) {
+                response.itemNotifications = [];
             }
+            triggeredItems.forEach(item => {
+                response.itemNotifications.push({
+                    type: 'item_gained',
+                    itemId: item.id,
+                    itemName: item.name,
+                    description: `获得道具：${item.name}`
+                });
+            });
         }
         
         // 检查章节结束条件

@@ -218,16 +218,11 @@ export class StateManager {
         
         // 处理物品变化
         if (changes.items) {
+            if (!this.state.items) {
+                this.state.items = {};
+            }
             Object.entries(changes.items).forEach(([itemId, status]) => {
-                if (status === true) {
-                    // 使用 addItem 方法防止重复获得
-                    this.addItem(itemId);
-                } else if (status === false) {
-                    // 移除道具
-                    if (this.state.items && this.state.items[itemId]) {
-                        delete this.state.items[itemId];
-                    }
-                }
+                this.state.items[itemId] = status;
                 
                 // 兼容旧的状态键
                 if (itemId === 'xuanDeBrush') {
