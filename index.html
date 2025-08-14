@@ -77,31 +77,16 @@
         
         <div id="input-area">
             <input type="text" id="player-input" placeholder="请输入你的话语或行动..." maxlength="200">
+            <button id="items-btn" onclick="openItemsModal()">道具</button>
             <button id="send-btn" onclick="sendMessage()">发送</button>
         </div>
         
-        <div id="items-container">
-            <div id="items-display">
-                <h4>已获得道具：</h4>
-                <div id="items-list">
-                    <!-- 道具列表将由JavaScript动态添加 -->
-                </div>
-            </div>
-            
-            <div id="item-selection">
-                <h4>选择道具使用：</h4>
-                <div id="item-options">
-                    <span class="item-option selected" data-item="none">不使用道具</span>
-                </div>
-            </div>
+        <!-- 选中道具标签 -->
+        <div id="selected-item-tag" style="display: none;">
+            <span class="selected-item-text">已选择: <span id="selected-item-name"></span></span>
+            <button class="cancel-item-btn" onclick="cancelSelectedItem()">×</button>
         </div>
         
-        <div id="game-info">
-            <div class="info-section">
-                <h3>当前状态</h3>
-                <p id="current-situation">你正在周瑜的军帐中，气氛有些紧张...</p>
-            </div>
-        </div>
     </div>
     
     <div id="loading" class="hidden">

@@ -450,32 +450,206 @@ window.showCharacterInfo = function(characterName) {
     }
 };
 
-// 全局道具选择函数
-window.selectItem = function(itemName) {
-    // 移除所有选中状态
-    document.querySelectorAll('.item-option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    
-    // 添加选中状态到当前选项
-    const selectedOption = document.querySelector(`[data-item="${itemName}"]`);
-    if (selectedOption) {
-        selectedOption.classList.add('selected');
+// 打开道具模态框
+window.openItemsModal = function() {
+    if (!gameInstance || !gameInstance.stateManager) {
+        console.warn('游戏实例未初始化');
+        return;
     }
+
+    const state = gameInstance.stateManager.getState();
+    const items = state.items || {};
+    const usedItems = state.usedItems || {};
+    const gameData = gameInstance.stateManager.gameData;
+
+    // 创建模态框
+    const modal = document.createElement('div');
+    modal.className = 'items-modal';
+    
+    // 获取可用道具
+    const availableItems = Object.entries(items).filter(([itemId, hasItem]) => 
+        hasItem && !usedItems[itemId]
+    );
+
+    let itemsHTML = '';
+    if (availableItems.length === 0) {
+        itemsHTML = '<div class="no-items-message">暂无可用道具</div>';
+    } else {
+        itemsHTML = '<div class="items-grid">';
+        availableItems.forEach(([itemId, hasItem]) => {
+            const itemData = gameData?.items?.[itemId];
+            const itemName = itemData?.name || itemId;
+            const itemDesc = itemData?.description || '神秘道具';
+            const isSelected = selectedItem === itemId ? 'selected' : '';
+            
+            itemsHTML += `
+                <div class="item-card ${isSelected}" data-item-id="${itemId}">
+                    <div class="item-name">${itemName}</div>
+                    <div class="item-desc">${itemDesc}</div>
+                </div>
+            `;
+        });
+        itemsHTML += '</div>';
+    }
+
+    modal.innerHTML = `
+        <div class="items-modal-content">
+            <div class="items-modal-header">
+                <h3>选择道具</h3>
+                <button class="items-modal-close" onclick="closeItemsModal()">&times;</button>
+            </div>
+            <div class="items-modal-body">
+                <div class="items-section">
+                    ${itemsHTML}
+                </div>
+                <div class="item-details-section">
+                    <div class="item-details-header">道具详情</div>
+                    <div class="item-details-content" id="item-details-content">
+                        <div class="no-selection-message">请选择一个道具查看详情</div>
+                    </div>
+                </div>
+            </div>
+            <div class="items-modal-buttons">
+                <button class="modal-btn secondary" onclick="closeItemsModal()">取消</button>
+                <button class="modal-btn primary" onclick="confirmItemSelection()">确定</button>
+            </div>
+        </div>
+    `;
+
+    // 添加点击事件
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeItemsModal();
+        }
+    });
+
+    // 为道具卡片添加点击事件
+    modal.querySelectorAll('.item-card').forEach(card => {
+        card.addEventListener('click', () => {
+            // 移除其他选中状态
+            modal.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
+            // 添加选中状态
+            card.classList.add('selected');
+            // 保存临时选择
+            window.tempSelectedItem = card.dataset.itemId;
+            
+            // 更新详情显示
+            const itemId = card.dataset.itemId;
+            const itemData = gameData?.items?.[itemId];
+            updateItemDetailsDisplay(itemId, itemData);
+        });
+    });
+
+    document.body.appendChild(modal);
+};
+
+// 关闭道具模态框
+window.closeItemsModal = function() {
+    const modal = document.querySelector('.items-modal');
+    if (modal) {
+        modal.remove();
+    }
+    window.tempSelectedItem = null;
+};
+
+// 确认道具选择
+window.confirmItemSelection = function() {
+    if (window.tempSelectedItem) {
+        selectItemForUse(window.tempSelectedItem);
+    }
+    closeItemsModal();
+};
+
+// 选择道具使用
+function selectItemForUse(itemId) {
+    if (!gameInstance || !gameInstance.stateManager) return;
+    
+    const gameData = gameInstance.stateManager.gameData;
+    const itemData = gameData?.items?.[itemId];
+    const itemName = itemData?.name || itemId;
     
     // 更新全局选中状态
-    selectedItem = itemName;
+    selectedItem = itemId;
     
-    // 如果取消选择，重置道具选择区域
-    if (itemName === 'none' && window.uiManager) {
-        const itemOptions = document.getElementById('item-options');
-        if (itemOptions) {
-            itemOptions.innerHTML = '<span class="item-option selected" data-item="none">不使用道具</span>';
-        }
-        // 移除道具的选中状态
-        window.uiManager.updateItemSelectionUI('none');
+    // 显示选中标签
+    const tag = document.getElementById('selected-item-tag');
+    const nameSpan = document.getElementById('selected-item-name');
+    if (tag && nameSpan) {
+        nameSpan.textContent = itemName;
+        tag.style.display = 'flex';
+    }
+}
+
+// 取消选中道具
+window.cancelSelectedItem = function() {
+    selectedItem = 'none';
+    const tag = document.getElementById('selected-item-tag');
+    if (tag) {
+        tag.style.display = 'none';
     }
 };
+
+// 更新道具详情显示
+function updateItemDetailsDisplay(itemId, itemData) {
+    const detailsContent = document.getElementById('item-details-content');
+    if (!detailsContent) return;
+    
+    if (!itemData) {
+        detailsContent.innerHTML = '<div class="no-selection-message">请选择一个道具查看详情</div>';
+        return;
+    }
+    
+    const effectDescription = getItemEffectDescription(itemData);
+    
+    detailsContent.innerHTML = `
+        <div class="item-detail-info">
+            <div class="item-detail-name">${itemData.name || itemId}</div>
+            <div class="item-detail-block">
+                <div class="item-detail-label">描述</div>
+                <div class="item-detail-text">${itemData.description || '神秘道具'}</div>
+            </div>
+            <div class="item-detail-block">
+                <div class="item-detail-label">效果</div>
+                <div class="item-detail-text">${effectDescription}</div>
+            </div>
+            ${itemData.usage ? `
+                <div class="item-detail-block">
+                    <div class="item-detail-label">使用方法</div>
+                    <div class="item-detail-text">${itemData.usage}</div>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+// 获取道具效果描述
+function getItemEffectDescription(itemData) {
+    if (!itemData || !itemData.effects) {
+        return '暂无特殊效果';
+    }
+    
+    let description = '';
+    const effects = itemData.effects;
+    
+    if (effects.persuasion_boost) {
+        description += `增加说服力 +${effects.persuasion_boost}`;
+    }
+    if (effects.wisdom_boost) {
+        if (description) description += '，';
+        description += `增加智慧 +${effects.wisdom_boost}`;
+    }
+    if (effects.trust_boost) {
+        if (description) description += '，';
+        description += `增加信任 +${effects.trust_boost}`;
+    }
+    if (effects.special_effect) {
+        if (description) description += '，';
+        description += effects.special_effect;
+    }
+    
+    return description || '暂无特殊效果';
+}
+
 
 // 设置全局uiManager引用
 window.uiManager = null;

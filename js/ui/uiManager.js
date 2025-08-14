@@ -164,9 +164,6 @@ export class UIManager {
             const timeText = `第${timeValue}日`;
             this.elements.timeProgress.textContent = timeText;
         }
-        
-        // 更新道具显示
-        this.updateItemsDisplay(state);
     }
     
     // 更新数值颜色
@@ -297,16 +294,7 @@ export class UIManager {
     
     // 更新游戏信息
     updateGameInfo() {
-        const state = this.stateManager.getState();
-        
-        // 更新当前情况描述
-        if (this.elements.currentSituation) {
-            const situation = this.generateSituationText(state);
-            this.elements.currentSituation.textContent = situation;
-        }
-        
-        // 更新道具显示
-        this.updateItemsDisplay(state);
+        // 游戏信息更新逻辑已简化，主要功能移至其他方法
     }
     
     // 生成情况描述文本
@@ -339,135 +327,17 @@ export class UIManager {
         return situation;
     }
     
-    // 更新道具显示
-    updateItemsDisplay(state) {
-        if (!this.elements.itemsList) {
-            return;
-        }
-        
-        const items = state.items || {};
-        const usedItems = state.usedItems || {};
-        
-        // 清空当前显示
-        this.elements.itemsList.innerHTML = '';
-        
-        // 显示拥有的道具
-        Object.entries(items).forEach(([itemId, hasItem]) => {
-            if (hasItem && !usedItems[itemId]) { // 只显示未使用的道具
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'item-slot clickable';
-                itemDiv.dataset.itemId = itemId;
-                
-                // 获取道具数据
-                const itemData = this.stateManager.gameData?.items?.[itemId];
-                const itemName = itemData?.name || itemId;
-                
-                itemDiv.innerHTML = `
-                    <div class="item-name">${itemName}</div>
-                    <div class="item-hint">点击选择/查看详情</div>
-                `;
-                
-                // 添加点击事件
-                itemDiv.addEventListener('click', (e) => {
-                    this.handleItemClick(itemId, itemData, e);
-                });
-                
-                this.elements.itemsList.appendChild(itemDiv);
-            }
-        });
-        
-        // 如果没有可用道具，显示提示
-        const availableItems = Object.entries(items).filter(([itemId, hasItem]) => hasItem && !usedItems[itemId]);
-        if (availableItems.length === 0) {
-            this.elements.itemsList.innerHTML = '<div class="no-items">暂无可用道具</div>';
-        }
-        
-        // 更新道具选择选项
-        this.updateItemOptions(state);
-    }
-    
-    // 处理道具点击事件
-    handleItemClick(itemId, itemData, event) {
-        // 检查是否已选中该道具
-        const currentSelected = window.selectedItem;
-        
-        if (currentSelected === itemId) {
-            // 如果已选中，显示道具详情
-            this.showItemDetails(itemId, itemData);
-        } else {
-            // 如果未选中，选择该道具
-            this.selectItemForUse(itemId, itemData);
-        }
-    }
-    
-    // 选择道具用于使用
-    selectItemForUse(itemId, itemData) {
-        // 更新全局选中状态
-        window.selectedItem = itemId;
-        
-        // 更新UI显示
-        this.updateItemSelectionUI(itemId);
-        
-        // 更新道具选择区域
-        const itemOptions = document.getElementById('item-options');
-        if (itemOptions) {
-            itemOptions.innerHTML = `
-                <span class="item-option selected" data-item="${itemId}">${itemData?.name || itemId}</span>
-                <span class="item-option" data-item="none" onclick="window.selectItem('none')">取消选择</span>
-            `;
-        }
-    }
-    
-    // 更新道具选择UI显示
-    updateItemSelectionUI(selectedItemId) {
-        // 移除所有道具的选中状态
-        document.querySelectorAll('.item-slot').forEach(slot => {
-            slot.classList.remove('selected');
-        });
-        
-        // 添加选中状态到当前道具
-        if (selectedItemId && selectedItemId !== 'none') {
-            const selectedSlot = document.querySelector(`[data-item-id="${selectedItemId}"]`);
-            if (selectedSlot) {
-                selectedSlot.classList.add('selected');
-            }
-        }
-    }
-    
-    // 更新道具选择选项
-    updateItemOptions(state) {
-        const itemOptions = document.getElementById('item-options');
-        if (!itemOptions) return;
-        
-        const currentSelected = window.selectedItem;
-        
-        // 如果当前选中的道具已被使用，重置选择
-        if (currentSelected && currentSelected !== 'none') {
-            const usedItems = state.usedItems || {};
-            if (usedItems[currentSelected]) {
-                window.selectedItem = 'none';
-                itemOptions.innerHTML = '<span class="item-option selected" data-item="none">不使用道具</span>';
-                return;
-            }
-        }
-        
-        // 如果没有选中道具，显示默认状态
-        if (!currentSelected || currentSelected === 'none') {
-            itemOptions.innerHTML = '<span class="item-option selected" data-item="none">不使用道具</span>';
-        }
-    }
-    
     // 显示道具详情
     showItemDetails(itemId, itemData) {
         const overlay = document.createElement('div');
         overlay.className = 'item-details-overlay';
         overlay.style.cssText = `
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -835,12 +705,12 @@ export class UIManager {
         const overlay = document.createElement('div');
         overlay.className = 'item-gained-overlay';
         overlay.style.cssText = `
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -850,38 +720,38 @@ export class UIManager {
         const dialog = document.createElement('div');
         dialog.className = 'item-gained-dialog';
         dialog.style.cssText = `
-            background: #2c3e50;
-            border: 2px solid #f39c12;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 400px;
-            width: 90%;
-            color: #ecf0f1;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            max-width: 300px;
+            width: 85%;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
         `;
         
         dialog.innerHTML = `
-            <div style="margin-bottom: 20px;">
-                <h3 style="color: #f39c12; margin: 0 0 10px 0;">获得道具</h3>
-                <div style="background: #34495e; padding: 15px; border-radius: 5px; margin: 15px 0;">
-                    <h4 style="color: #3498db; margin: 0 0 10px 0;">${item.itemName}</h4>
-                    <p style="margin: 0; line-height: 1.6;">${item.description}</p>
+            <div style="margin-bottom: 16px;">
+                <h3 style="color: #333; margin: 0 0 8px 0; font-size: 1.1em; font-weight: 600;">获得道具</h3>
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; margin: 12px 0; border: 1px solid #dee2e6;">
+                    <h4 style="color: #333; margin: 0 0 6px 0; font-size: 0.95em;">${item.itemName}</h4>
+                    <p style="margin: 0; line-height: 1.4; color: #666; font-size: 0.85em;">${item.description}</p>
                 </div>
             </div>
             <div style="text-align: center;">
                 <button onclick="this.parentElement.parentElement.parentElement.remove()" 
                         style="
-                            padding: 10px 20px;
-                            background: #27ae60;
+                            padding: 8px 16px;
+                            background: #333;
                             color: white;
-                            border: none;
-                            border-radius: 5px;
+                            border: 1px solid #333;
+                            border-radius: 4px;
                             cursor: pointer;
-                            font-size: 14px;
+                            font-size: 0.85em;
                         "
-                        onmouseover="this.style.background='#2ecc71'"
-                        onmouseout="this.style.background='#27ae60'">
+                        onmouseover="this.style.background='#555'"
+                        onmouseout="this.style.background='#333'">
                     确定
                 </button>
             </div>
@@ -1025,57 +895,56 @@ export class UIManager {
         const style = document.createElement('style');
         style.textContent = `
             .chapter-transition-overlay {
-                position: fixed;
+                position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+                background: rgba(0, 0, 0, 0.8);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 z-index: 10000;
-                animation: fadeIn 0.5s ease-in;
             }
             
             .transition-content {
                 text-align: center;
-                color: white;
-                max-width: 600px;
-                padding: 40px;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                animation: slideUp 0.8s ease-out 0.3s both;
+                color: #333;
+                max-width: 320px;
+                padding: 20px;
+                background: white;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
             
             .chapter-title {
-                font-size: 2.5em;
-                margin-bottom: 30px;
-                background: linear-gradient(45deg, #ffd700, #ffed4e);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
+                font-size: 1.3em;
+                margin-bottom: 16px;
+                color: #333;
+                font-weight: 600;
             }
             
             .result-text h2 {
-                font-size: 2em;
-                margin-bottom: 15px;
+                font-size: 1.1em;
+                margin-bottom: 12px;
+                color: #666;
+                font-weight: 500;
             }
             
             .result-text.success h2 {
-                color: #4ade80;
+                color: #333;
             }
             
             .result-text.failure h2 {
-                color: #f87171;
+                color: #666;
             }
             
             .result-text p {
-                font-size: 1.2em;
-                line-height: 1.6;
-                margin-bottom: 30px;
+                font-size: 0.9em;
+                line-height: 1.4;
+                margin-bottom: 16px;
+                color: #666;
             }
             
             .next-chapter-preview {
@@ -1203,12 +1072,12 @@ export class UIManager {
         const overlay = document.createElement('div');
         overlay.className = 'event-overlay';
         overlay.style.cssText = `
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -1218,45 +1087,46 @@ export class UIManager {
         const dialog = document.createElement('div');
         dialog.className = 'event-dialog';
         dialog.style.cssText = `
-            background: #2c3e50;
-            border: 2px solid #f39c12;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 500px;
-            width: 90%;
-            color: #ecf0f1;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            width: 80%;
+            max-height: 70%;
+            overflow-y: auto;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         `;
         
         let dialogContent = `
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h3 style="color: #f39c12; margin: 0 0 10px 0;">${event.title || '事件发生'}</h3>
-                <p style="margin: 0; line-height: 1.6;">${event.description || ''}</p>
+            <div style="text-align: center; margin-bottom: 16px;">
+                <h3 style="color: #333; margin: 0 0 8px 0; font-size: 1.1em; font-weight: 600;">${event.title || '事件发生'}</h3>
+                <p style="margin: 0; line-height: 1.5; color: #666; font-size: 0.9em;">${event.description || ''}</p>
             </div>
         `;
         
         // 根据事件类型添加不同内容
         if (event.type === 'dialogue_event') {
             dialogContent += `
-                <div style="background: #34495e; padding: 15px; border-radius: 5px; margin: 15px 0;">
-                    <p style="margin: 0; font-style: italic;">${event.content}</p>
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; margin: 12px 0; border: 1px solid #dee2e6;">
+                    <p style="margin: 0; font-style: italic; color: #333; font-size: 0.9em; line-height: 1.4;">${event.content}</p>
                 </div>
             `;
         } else if (event.type === 'check') {
             dialogContent += `
-                <div style="background: #34495e; padding: 15px; border-radius: 5px; margin: 15px 0;">
-                    <h4 style="color: #3498db; margin: 0 0 10px 0;">检定过程</h4>
-                    <p style="margin: 5px 0;">基础值: ${event.baseValue || 0}</p>
-                    <p style="margin: 5px 0;">修正值: ${event.modifier || 0}</p>
-                    <p style="margin: 5px 0;">随机值: ${event.randomValue || 0}</p>
-                    <hr style="border: 1px solid #7f8c8d; margin: 10px 0;">
-                    <p style="margin: 5px 0; font-weight: bold; color: ${event.success ? '#27ae60' : '#e74c3c'};">结果: ${event.success ? '成功' : '失败'}</p>
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; margin: 12px 0; border: 1px solid #dee2e6;">
+                    <h4 style="color: #333; margin: 0 0 8px 0; font-size: 0.95em;">检定过程</h4>
+                    <p style="margin: 4px 0; font-size: 0.85em; color: #666;">基础值: ${event.baseValue || 0}</p>
+                    <p style="margin: 4px 0; font-size: 0.85em; color: #666;">修正值: ${event.modifier || 0}</p>
+                    <p style="margin: 4px 0; font-size: 0.85em; color: #666;">随机值: ${event.randomValue || 0}</p>
+                    <hr style="border: none; border-top: 1px solid #dee2e6; margin: 8px 0;">
+                    <p style="margin: 4px 0; font-weight: 600; color: ${event.success ? '#333' : '#666'}; font-size: 0.9em;">结果: ${event.success ? '成功' : '失败'}</p>
                 </div>
             `;
         } else if (event.type === 'choice_event') {
             dialogContent += `
-                <div style="margin: 15px 0;">
-                    <h4 style="color: #3498db; margin: 0 0 15px 0;">请选择你的行动</h4>
+                <div style="margin: 12px 0;">
+                    <h4 style="color: #333; margin: 0 0 12px 0; font-size: 0.95em;">请选择你的行动</h4>
             `;
             
             event.choices.forEach((choice, index) => {
@@ -1265,18 +1135,17 @@ export class UIManager {
                             style="
                                 display: block;
                                 width: 100%;
-                                margin: 10px 0;
-                                padding: 12px;
-                                background: #3498db;
-                                color: white;
-                                border: none;
-                                border-radius: 5px;
+                                margin: 6px 0;
+                                padding: 10px;
+                                background: white;
+                                color: #333;
+                                border: 1px solid #ddd;
+                                border-radius: 4px;
                                 cursor: pointer;
-                                font-size: 14px;
-                                transition: background 0.3s;
+                                font-size: 0.85em;
                             "
-                            onmouseover="this.style.background='#2980b9'"
-                            onmouseout="this.style.background='#3498db'">
+                            onmouseover="this.style.background='#f8f9fa'"
+                            onmouseout="this.style.background='white'">
                         ${choice.text}
                     </button>
                 `;
