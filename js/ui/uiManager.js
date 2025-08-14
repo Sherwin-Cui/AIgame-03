@@ -1127,7 +1127,8 @@ export class UIManager {
             border: 1px solid #ccc;
             border-radius: 8px;
             padding: 16px;
-            width: 80%;
+            width: 90%;
+            max-width: 380px;
             max-height: 70%;
             overflow-y: auto;
             color: #333;

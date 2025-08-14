@@ -2,7 +2,7 @@
 import { StateManager } from './core/stateManager.js';
 import { AIManager } from './core/aiManager.js';
 import { GameEngine } from './core/gameEngine.js';
-import { UIManager } from './ui/uiManager.js';
+import { UIManager } from './ui/UIManager.js';
 import { PromptBuilder } from './promptBuilder.js';
 
 // 全局变量
