@@ -441,7 +441,29 @@ window.sendMessage = function() {
     }
 };
 
-// 移除了useItem函数，现在使用selectItem来选择道具
+// 选择道具函数（供初始化和重置时调用）
+window.selectItem = function(itemId) {
+    selectedItem = itemId || 'none';
+    
+    // 更新选中道具标签显示
+    const tag = document.getElementById('selected-item-tag');
+    if (tag) {
+        if (itemId === 'none' || !itemId) {
+            tag.style.display = 'none';
+        } else {
+            const gameData = gameInstance?.stateManager?.gameData;
+            const itemData = gameData?.items?.[itemId];
+            const itemName = itemData?.name || itemId;
+            const nameSpan = document.getElementById('selected-item-name');
+            if (nameSpan) {
+                nameSpan.textContent = itemName;
+                tag.style.display = 'flex';
+            }
+        }
+    }
+    
+    console.log('选择道具:', itemId);
+};
 
 // 全局函数：显示角色信息
 window.showCharacterInfo = function(characterName) {

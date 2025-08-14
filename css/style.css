@@ -106,12 +106,16 @@ header h1 {
     line-height: 1.4;
     font-size: 0.85em;
     color: #333;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .dialogue-message.system {
     background: #f8f9fa;
     border-left: 2px solid #dee2e6;
     font-style: italic;
+    display: block;
 }
 
 .dialogue-message.npc {
@@ -124,8 +128,30 @@ header h1 {
     background: #f0f0f0;
     border-left: 2px solid #333;
     color: #333;
-    text-align: right;
     margin-left: 16px;
+    flex-direction: row-reverse;
+}
+
+/* 对话头像样式 */
+.dialogue-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: #333;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.dialogue-content {
+    flex: 1;
+    min-width: 0;
 }
 
 .dialogue-message .speaker {
@@ -133,6 +159,10 @@ header h1 {
     margin-bottom: 4px;
     color: #333;
     font-size: 0.8em;
+}
+
+.dialogue-message.player .dialogue-content {
+    text-align: right;
 }
 
 /* 输入区域样式 */
@@ -155,8 +185,8 @@ header h1 {
 
 #player-input:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    border-color: #666;
+    box-shadow: 0 0 5px rgba(102, 102, 102, 0.3);
 }
 
 button {
@@ -242,20 +272,20 @@ button {
 }
 
 .item.available {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #dee2e6;
 }
 
 .item.available:hover {
-    background: #c3e6cb;
+    background: #e9ecef;
     transform: scale(1.05);
 }
 
 .item.used {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: #f0f0f0;
+    color: #666;
+    border: 1px solid #ccc;
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -320,21 +350,20 @@ button {
 
 /* 数值颜色样式 */
 .value-low {
-    color: #27ae60 !important;
+    color: #333 !important;
 }
 
 .value-medium {
-    color: #f39c12 !important;
+    color: #666 !important;
 }
 
 .value-high {
-    color: #e74c3c !important;
+    color: #999 !important;
 }
 
 .value-critical {
-    color: #c0392b !important;
+    color: #333 !important;
     font-weight: bold;
-    text-shadow: 0 0 5px rgba(192, 57, 43, 0.5);
 }
 
 /* 数值变化动画 */
@@ -346,11 +375,11 @@ button {
 }
 
 .value-change.positive {
-    color: #27ae60;
+    color: #333;
 }
 
 .value-change.negative {
-    color: #e74c3c;
+    color: #666;
 }
 
 /* 系统消息样式 */
@@ -367,19 +396,19 @@ button {
 }
 
 .system-message.info {
-    background: #3498db;
+    background: #666;
 }
 
 .system-message.success {
-    background: #27ae60;
+    background: #333;
 }
 
 .system-message.warning {
-    background: #f39c12;
+    background: #999;
 }
 
 .system-message.error {
-    background: #e74c3c;
+    background: #666;
 }
 
 /* 对话框样式 - 限制在16:9框架内 */
@@ -429,21 +458,21 @@ button {
 }
 
 .btn-confirm {
-    background: #27ae60;
+    background: #333;
     color: white;
 }
 
 .btn-confirm:hover {
-    background: #219a52;
+    background: #555;
 }
 
 .btn-cancel {
-    background: #95a5a6;
+    background: #666;
     color: white;
 }
 
 .btn-cancel:hover {
-    background: #7f8c8d;
+    background: #333;
 }
 
 /* AI思考气泡样式 */
