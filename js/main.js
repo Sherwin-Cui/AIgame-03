@@ -533,7 +533,7 @@ window.openItemsModal = function() {
             </div>
             <div class="items-modal-buttons">
                 <button class="modal-btn secondary" onclick="closeItemsModal()">取消</button>
-                <button class="modal-btn primary" onclick="confirmItemSelection()">确定</button>
+                <button class="modal-btn primary" onclick="confirmItemSelection()">选择使用</button>
             </div>
         </div>
     `;

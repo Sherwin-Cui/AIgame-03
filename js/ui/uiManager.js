@@ -237,7 +237,6 @@ export class UIManager {
             html = `
                 <div class="dialogue-avatar">${avatarText}</div>
                 <div class="dialogue-content">
-                    ${speaker ? `<div class="speaker">${speaker}</div>` : ''}
                     <div class="content">${formattedContent}</div>
                 </div>
             `;
